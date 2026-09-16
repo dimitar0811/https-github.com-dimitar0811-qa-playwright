@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+
+  <h1>Login</h1>
+
+  <form id="loginForm">
+    <label for="email">Email</label>
+    <input id="email" type="email">
+
+    <label for="password">Password</label>
+    <input id="password" type="password">
+
+    <button type="submit">Login</button>
+
+    <p id="error" style="display: none;">Invalid credentials</p>
+  </form>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const error = document.getElementById('error');
+
+      if (email === 'user@test.com' && password === 'Password123') {
+        window.location.href = 'dashboard.html';
+      } else {
+        error.style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+</html>

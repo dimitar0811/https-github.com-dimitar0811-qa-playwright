@@ -5,4 +5,5 @@ test('open booking website', async ({ page }) => {
 
   await expect(page).toHaveTitle(/Restful-Booker/);
   await expect(page.locator('body')).toContainText('Welcome to Restful-Booker');
+  await expect(page.locator('body')).toContainText('API');
 });

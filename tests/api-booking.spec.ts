@@ -67,7 +67,7 @@ test('create, get, update and delete a booking', async ({ request, token }) => {
   );
 
   expect(updateResponse.status()).toBe(200);
-  expect(createResponse.headers()['content-type']).toContain('application/json');
+  expect(updateResponse.headers()['content-type']).toContain('application/json');
   const updateBody = await updateResponse.json();
 
   expect(updateBody.firstname).toBe('Dimitar Updated');
@@ -85,4 +85,9 @@ test('create, get, update and delete a booking', async ({ request, token }) => {
   );
 
   expect(deleteResponse.status()).toBe(201);
+  const verifyDeleteResponse = await request.get(
+  `https://restful-booker.herokuapp.com/booking/${bookingId}`
+);
+
+expect(verifyDeleteResponse.status()).toBe(404);
 });

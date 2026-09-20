@@ -1,6 +1,7 @@
 import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { DashboardPage } from '../pages/DashboardPage';
+import { testUser } from '../test-data/user-data';
 
 type AuthenticatedPages = {
   dashboardPage: DashboardPage;
@@ -16,7 +17,7 @@ export const test = base.extend<AuthenticatedPages>({
     const loginPage = new LoginPage(page);
 
     await loginPage.open();
-    await loginPage.login('user@test.com', 'Password123');
+    await loginPage.login(testUser.email, testUser.password);
 
     await use(new DashboardPage(page));
   },

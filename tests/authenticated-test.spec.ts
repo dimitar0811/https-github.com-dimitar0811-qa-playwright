@@ -1,9 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/authenticated';
 
-test.beforeEach(async ({ page }) => {
-  await page.goto('http://localhost:3000/login.html');
-});
+
 
 test.afterEach(async ({ page }, testInfo) => {
   if (testInfo.status !== testInfo.expectedStatus) {

@@ -20,5 +20,8 @@ for (const data of bookingData) {
     expect(body.lastname).toBe(data.lastname);
     expect(body.totalprice).toBe(data.totalprice);
     expect(body.depositpaid).toBe(data.depositpaid);
+    expect(body.bookingdates.checkin).toBe(data.bookingdates.checkin);
+    expect(body.bookingdates.checkout).toBe(data.bookingdates.checkout);
+    expect(body.additionalneeds).toBe(data.additionalneeds);
   });
 }

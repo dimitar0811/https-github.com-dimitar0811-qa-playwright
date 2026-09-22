@@ -31,6 +31,8 @@ export class LoginPage {
     await expect(this.errorMessage).toBeVisible();
   }
   async expectLoginPageVisible() {
-  await expect(this.page.getByRole('heading', { name: 'Login' })).toBeVisible();
+  await expect(
+    this.page.getByRole('heading', { name: 'Login' })
+  ).toBeVisible();
 }
 }

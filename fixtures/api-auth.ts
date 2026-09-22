@@ -19,6 +19,7 @@ export const test = base.extend<ApiFixtures>({
     expect(response.status()).toBe(200);
 
     const body = await response.json();
+    expect(body.token).toBeTruthy();
 
     await use(body.token);
   }

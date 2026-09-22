@@ -37,13 +37,13 @@ test('create, get, update and delete a booking', async ({ request, token }) => {
 
   const getBody = await getResponse.json();
 
-   expect(getBody.firstname).toBe('Dimitar');
-   expect(getBody.lastname).toBe('Test');
-   expect(getBody.totalprice).toBe(150);
-   expect(getBody.depositpaid).toBe(true);
-   expect(getBody.bookingdates.checkin).toBe('2026-10-01');
-   expect(getBody.bookingdates.checkout).toBe('2026-10-05');
-   expect(getBody.additionalneeds).toBe('Breakfast');
+  expect(getBody.firstname).toBe('Dimitar');
+  expect(getBody.lastname).toBe('Test');
+  expect(getBody.totalprice).toBe(150);
+  expect(getBody.depositpaid).toBe(true);
+  expect(getBody.bookingdates.checkin).toBe('2026-10-01');
+  expect(getBody.bookingdates.checkout).toBe('2026-10-05');
+  expect(getBody.additionalneeds).toBe('Breakfast');
 
   // 3. PUT - променяме резервацията
   const updateResponse = await request.put(
@@ -68,11 +68,16 @@ test('create, get, update and delete a booking', async ({ request, token }) => {
 
   expect(updateResponse.status()).toBe(200);
   expect(updateResponse.headers()['content-type']).toContain('application/json');
+
   const updateBody = await updateResponse.json();
 
   expect(updateBody.firstname).toBe('Dimitar Updated');
   expect(updateBody.lastname).toBe('Test Updated');
   expect(updateBody.totalprice).toBe(200);
+  expect(updateBody.depositpaid).toBe(false);
+  expect(updateBody.bookingdates.checkin).toBe('2026-10-02');
+  expect(updateBody.bookingdates.checkout).toBe('2026-10-06');
+  expect(updateBody.additionalneeds).toBe('Lunch');
 
   // 4. DELETE - изтриваме резервацията
   const deleteResponse = await request.delete(
@@ -85,9 +90,10 @@ test('create, get, update and delete a booking', async ({ request, token }) => {
   );
 
   expect(deleteResponse.status()).toBe(201);
-  const verifyDeleteResponse = await request.get(
-  `https://restful-booker.herokuapp.com/booking/${bookingId}`
-);
 
-expect(verifyDeleteResponse.status()).toBe(404);
+  const verifyDeleteResponse = await request.get(
+    `https://restful-booker.herokuapp.com/booking/${bookingId}`
+  );
+
+  expect(verifyDeleteResponse.status()).toBe(404);
 });

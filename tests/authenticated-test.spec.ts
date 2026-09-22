@@ -1,7 +1,4 @@
-import { expect } from '@playwright/test';
 import { test } from '../fixtures/authenticated';
-
-
 
 test.afterEach(async ({ page }, testInfo) => {
   if (testInfo.status !== testInfo.expectedStatus) {
